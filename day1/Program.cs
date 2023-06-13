@@ -19,10 +19,22 @@ namespace day1
 
             var solution = Solve(ints, howManyIntsToSum, requiredSum);
             Console.WriteLine(solution);
+            Console.WriteLine("linq solution " + LinqSolution(ints));
             } catch(Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
             }
+        }
+        
+        // Solution using linq(lang integrated query)
+        static int LinqSolution(IEnumerable<int> ints)
+        {
+            return
+            (from x in ints
+             from y in ints.Skip(1)
+             from z in ints.Skip(2)
+             where x + y + z == 2020
+             select x * y * z).FirstOrDefault();    
         }
         
         // recursive solution for fun
